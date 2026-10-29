@@ -1,0 +1,51 @@
+package com.ase.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Student {
+    public String id; 
+    public String n;
+    public String email;
+    public double gpa;
+    
+    private List<String> courses; 
+
+    public Student(String id, String n, String email) {
+        this.id = id;
+        this.n = n;
+        this.email = email;
+        this.gpa = 0.0;
+        this.courses = new ArrayList<>();
+    }
+
+    public Student(String id, String n, String email, double gpa) {
+        this.id = id;
+        this.n = n;
+        this.email = email;
+        this.gpa = gpa;
+        this.courses = new ArrayList<>();
+    }
+
+    public void printInfo() {
+        System.out.println("ID: " + id + " | Name: " + n + " | Email: " + email + " | GPA: " + gpa);
+    }
+
+    public String toCsv() {
+        return id + "," + n + "," + email + "," + gpa;
+    }
+
+    public boolean enrollInCourse(String courseId) {
+        for (String enrolledCourseId : courses) {
+            if (enrolledCourseId.equalsIgnoreCase(courseId)) {
+                return false;
+            }
+        }
+        courses.add(courseId);
+        return true;
+    }
+
+    public List<String> getCourses() {
+        return new ArrayList<>(courses);
+    }
+}
